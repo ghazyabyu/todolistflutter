@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/authcontroller.dart';
+import 'package:todolistflutter/controllers/authcontroller.dart';
+
 import '../components/customtextfield.dart';
 import '../components/custombutton.dart';
 import 'dashboard_page.dart';
@@ -13,7 +14,9 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthController authC = Get.find();
+    final AuthController authC = Get.find<AuthController>();
+
+    
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5), 
@@ -59,7 +62,7 @@ class LoginPage extends StatelessWidget {
                 onPressed: () {
                   bool success = authC.login(username.text, password.text);
                   if (success) {
-                    Get.offAll(() => const DashboardPage());
+                    Get.offAll(() => DashboardPage());
                   } else {
                     Get.snackbar(
                       "Login Failed",
