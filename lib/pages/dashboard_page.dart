@@ -1,18 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:todolistflutter/bindings/dashboardbinding.dart';
+import 'package:todolistflutter/controllers/dashboardcontroller.dart';
 
 class DashboardPage extends StatelessWidget {
-  const DashboardPage({super.key});
+  DashboardPage({super.key});
+
+  final dashboardController = Get.find<DashboardController>();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Dashboard"),
-      ),
-      body: const Center(
-        child: Text(
-          "Selamat datang di Dashboard 🎉",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    return Obx(
+      () => Scaffold(
+        appBar: AppBar(title: const Text("Dashboard")),
+        body: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                "Selamat datang di Dashboard 🎉",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Expanded(
+              child: dashboardController
+                  .pages[dashboardController.selectedIndex.value],
+            ),
+          ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: dashboardController.selectedIndex.value,
+          onTap: dashboardController.changePage,
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.grey,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.history),
+              label: "History",
+            ),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+          ],
         ),
       ),
     );
