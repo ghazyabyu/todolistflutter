@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:todolistflutter/bindings/authbinding.dart';
-import 'package:todolistflutter/pages/login_page.dart';
-import 'package:todolistflutter/routes/routes.dart';
+import 'package:get/get.dart';
 import 'package:todolistflutter/routes/pages.dart';
-
-
+import 'package:todolistflutter/routes/routes.dart';
 
 void main() {
-  runApp( MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key}); // <-- ini harus ada const
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.loginpage,
+      initialRoute: AppRoutes.loginpage, 
       getPages: AppPages.pages,
     );
   }
 }
-

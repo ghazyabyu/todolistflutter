@@ -1,7 +1,7 @@
 class AppRoutes {
-  static const String loginpage = "/loginpage";
-  static const String historypage = "/historypage";
-  static const String homepage = "/homepage";
-  static const String profilepage = "/profilepage";
-  static const String dashboardpage = "/dashboardpage";
+  static const loginpage = '/loginpage';
+  static const dashboardpage = '/dashboardpage';
+  static const historypage = '/historypage';
+  static const profilepage = '/profilepage';
+  static const homepage = '/homepage';
 }
