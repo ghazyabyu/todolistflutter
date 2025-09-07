@@ -6,7 +6,7 @@ import 'package:todolistflutter/controllers/dashboardcontroller.dart';
 class DashboardPage extends StatelessWidget {
   DashboardPage({super.key});
 
-  final dashboardController = Get.find<DashboardController>();
+  final DashboardController dash =  Get.find<DashboardController>();
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +23,18 @@ class DashboardPage extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: dashboardController
-                  .pages[dashboardController.selectedIndex.value],
+              child: dash
+                  .pages[dash.selectedIndex.value],
             ),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
-          currentIndex: dashboardController.selectedIndex.value,
-          onTap: dashboardController.changePage,
+          currentIndex: dash.selectedIndex.value,
+          onTap: dash.changePage,
           selectedItemColor: Colors.blue,
           unselectedItemColor: Colors.grey,
           items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.history),
-              label: "History",
-            ),
+            BottomNavigationBarItem(icon:Icon(Icons.history), label: "History",),
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
           ],
