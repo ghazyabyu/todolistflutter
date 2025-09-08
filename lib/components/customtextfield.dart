@@ -20,9 +20,9 @@ class CustomTextField extends StatelessWidget {
       style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
         hintText: hint,
-        hintStyle: const TextStyle(color: Color(0xFFFFF0C4)), // krem
+        hintStyle: const TextStyle(color: Color(0xFFFFF0C4)), 
         filled: true,
-        fillColor: const Color(0xFF660B05), // maroon
+        fillColor: const Color(0xFF660B05), 
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,

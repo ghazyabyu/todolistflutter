@@ -12,16 +12,9 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        appBar: AppBar(title: const Text("Dashboard")),
+        appBar: AppBar(title: const Text("To Do List Today")),
         body: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text(
-                "Selamat datang di Dashboard 🎉",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
             Expanded(
               child: dash
                   .pages[dash.selectedIndex.value],

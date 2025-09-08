@@ -5,6 +5,11 @@ class HistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Text(
+        "Ini History Page",
+        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+      ),
+    );
   }
 }
