@@ -4,4 +4,5 @@ class AppRoutes {
   static const historypage = '/historypage';
   static const profilepage = '/profilepage';
   static const homepage = '/homepage';
+  static const addtodo = '/add-todo'; 
 }
