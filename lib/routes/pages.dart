@@ -2,12 +2,15 @@ import 'package:get/get.dart';
 import 'package:todolistflutter/bindings/authbinding.dart';
 import 'package:todolistflutter/bindings/dashboardbinding.dart';
 import 'package:todolistflutter/bindings/historybinding.dart';
+import 'package:todolistflutter/bindings/homebinding.dart'; // <- tambahin ini
 import 'package:todolistflutter/pages/dashboard_page.dart';
 import 'package:todolistflutter/pages/history_page.dart';
 import 'package:todolistflutter/pages/home_page.dart';
 import 'package:todolistflutter/pages/login_page.dart';
 import 'package:todolistflutter/pages/profile_page.dart';
+import 'package:todolistflutter/pages/todoPage.dart';
 import 'package:todolistflutter/routes/routes.dart';
+
 
 class AppPages {
   static final pages = [
@@ -24,15 +27,18 @@ class AppPages {
     GetPage(
       name: AppRoutes.historypage,
       page: () => HistoryPage(),
-      binding: Historybinding(),
+      binding: HistoryBinding(),
     ),
-    GetPage(
-      name: AppRoutes.profilepage,
-      page: () => ProfilePage(),
-    ),
+    GetPage(name: AppRoutes.profilepage, page: () => ProfilePage()),
     GetPage(
       name: AppRoutes.homepage,
       page: () => HomePage(),
+      binding: HomeBinding(),
+    ),
+     GetPage(
+      name: '/add-todo',
+      page: () => AddTodoPage(),
     ),
   ];
 }
+

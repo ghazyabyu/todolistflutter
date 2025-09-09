@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
+import 'package:todolistflutter/controllers/todocontroller.dart';
 import '../controllers/historycontroller.dart';
 
-class Historybinding extends Bindings {
+class HistoryBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<Historycontroller>(() => Historycontroller());
+    Get.lazyPut<HistoryController>(() => HistoryController());
   }
 }

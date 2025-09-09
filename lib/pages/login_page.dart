@@ -13,7 +13,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthController authC = Get.find<AuthController>(); // ✅ Binding otomatis
+    final AuthController authC = Get.find<AuthController>();
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
@@ -36,9 +36,9 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 40),
 
-              CustomTextField(controller: username, hint: "Username"),
+              CustomTextField(controller: username, hintText: "Username"),
               const SizedBox(height: 16),
-              CustomTextField(controller: password, hint: "Password", obscureText: true),
+              CustomTextField(controller: password, hintText: "Password", obscureText: true),
 
               const SizedBox(height: 24),
               CustomButton(
@@ -46,7 +46,7 @@ class LoginPage extends StatelessWidget {
                 onPressed: () {
                   bool success = authC.login(username.text, password.text);
                   if (success) {
-                    Get.offAllNamed('/dashboardpage'); // ✅ pindah via route
+                    Get.offAllNamed('/dashboardpage');
                   } else {
                     Get.snackbar(
                       "Login Failed",
