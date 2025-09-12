@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/todocontroller.dart';
 import '../components/customcard.dart';
+import '../components/customhistorycard.dart';
 
 class HistoryPage extends StatelessWidget {
   HistoryPage({super.key});
@@ -23,10 +24,11 @@ class HistoryPage extends StatelessWidget {
           itemCount: historyList.length,
           itemBuilder: (context, index) {
             final todo = historyList[index];
-            return CustomCard(
+            return Customhistorycard(
               title: todo.title,
               subtitle: todo.description,
               category: todo.category,
+              dueDate: todo.dueDate,
               onDone: null,
             );
           },

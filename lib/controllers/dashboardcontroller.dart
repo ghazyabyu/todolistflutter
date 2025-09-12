@@ -7,7 +7,7 @@ import 'package:todolistflutter/pages/profile_page.dart';
 class DashboardController extends GetxController {
   var selectedIndex = 0.obs;
 
-  final List<Widget> pages = [HistoryPage(), HomePage(), ProfilePage()];
+  final List<Widget> pages = [HomePage(),HistoryPage(), ProfilePage()];
 
   void changePage(int index) {
     selectedIndex.value = index;

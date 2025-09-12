@@ -8,11 +8,36 @@ class AddTodoPage extends StatelessWidget {
   AddTodoPage({super.key});
 
   final TodoController todoController = Get.find<TodoController>();
-
   final titleController = TextEditingController();
   final descController = TextEditingController();
+  final duedatecontroller = TextEditingController();
+  DateTime? selectedDate;
+
   final categories = ["Sekolah", "Pekerjaan", "Pribadi"];
   var selectedCategory = "".obs;
+
+  
+  String formatDate(DateTime date) {
+    return "${date.day} ${_monthName(date.month)} ${date.year}";
+  }
+
+  String _monthName(int month) {
+    const months = [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember"
+    ];
+    return months[month - 1];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +48,10 @@ class AddTodoPage extends StatelessWidget {
       titleController.text = args["title"];
       descController.text = args["desc"];
       selectedCategory.value = args["category"];
+      if (args["duedate"] != null && args["duedate"] is DateTime) {
+        selectedDate = args["duedate"];
+        duedatecontroller.text = formatDate(selectedDate!);
+      }
     }
 
     return Scaffold(
@@ -37,20 +66,50 @@ class AddTodoPage extends StatelessWidget {
             const SizedBox(height: 12),
             CustomTextField(controller: descController, hintText: "Deskripsi"),
             const SizedBox(height: 12),
-            Obx(() => DropdownButton<String>(
-                  value: selectedCategory.value.isEmpty
-                      ? null
-                      : selectedCategory.value,
-                  hint: const Text("Pilih Kategori"),
-                  onChanged: (value) {
-                    if (value != null) selectedCategory.value = value;
-                  },
-                  items: categories
-                      .map((cat) =>
-                          DropdownMenuItem(value: cat, child: Text(cat)))
-                      .toList(),
-                )),
+
+            
+            GestureDetector(
+              onTap: () async {
+                DateTime? picked = await showDatePicker(
+                  context: context,
+                  initialDate: selectedDate ?? DateTime.now(),
+                  firstDate: DateTime(2020),
+                  lastDate: DateTime(2100),
+                );
+                if (picked != null) {
+                  selectedDate = picked;
+                  duedatecontroller.text = formatDate(picked);
+                }
+              },
+              child: AbsorbPointer(
+                child: CustomTextField(
+                  controller: duedatecontroller,
+                  hintText: "Pilih Due Date",
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            
+            Obx(
+              () => DropdownButton<String>(
+                value:
+                    selectedCategory.value.isEmpty ? null : selectedCategory.value,
+                hint: const Text("Pilih Kategori"),
+                onChanged: (value) {
+                  if (value != null) selectedCategory.value = value;
+                },
+                items: categories
+                    .map(
+                      (cat) =>
+                          DropdownMenuItem(value: cat, child: Text(cat)),
+                    )
+                    .toList(),
+              ),
+            ),
             const SizedBox(height: 20),
+
+           
             CustomButton(
               text: isEdit ? "Update" : "Simpan",
               onPressed: () {
@@ -62,12 +121,14 @@ class AddTodoPage extends StatelessWidget {
                       titleController.text,
                       descController.text,
                       selectedCategory.value,
+                      selectedDate, 
                     );
                   } else {
                     todoController.addTodo(
                       titleController.text,
                       descController.text,
                       selectedCategory.value,
+                      selectedDate, 
                     );
                   }
                   Get.back();
