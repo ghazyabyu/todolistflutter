@@ -12,7 +12,6 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        appBar: AppBar(title: const Text("To Do List Today")),
         body: Column(
           children: [
             Expanded(
@@ -27,8 +26,10 @@ class DashboardPage extends StatelessWidget {
           selectedItemColor: Colors.blue,
           unselectedItemColor: Colors.grey,
           items: const [
+             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+
             BottomNavigationBarItem(icon:Icon(Icons.history), label: "History",),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+           
             BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
           ],
         ),

@@ -26,16 +26,21 @@ class HomePage extends StatelessWidget {
               title: todo.title,
               subtitle: todo.description,
               category: todo.category,
+              dueDate: todo.dueDate,
               onDone: () {
                 todoController.markAsDone(index);
               },
               onEdit: () {
-                Get.toNamed(AppRoutes.addtodo, arguments: {
-                  "index": index,
-                  "title": todo.title,
-                  "desc": todo.description,
-                  "category": todo.category,
-                });
+                Get.toNamed(
+                  AppRoutes.addtodo,
+                  arguments: {
+                    "index": index,
+                    "title": todo.title,
+                    "desc": todo.description,
+                    "category": todo.category,
+                    "duedate": todo.dueDate,
+                  },
+                );
               },
               onDelete: () {
                 todoController.deleteTodo(index);

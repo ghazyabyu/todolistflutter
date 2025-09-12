@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class CustomCard extends StatelessWidget {
+class Customhistorycard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String category;
   final VoidCallback? onDone;
   final VoidCallback? onEdit;  
   final VoidCallback? onDelete;
-  final DateTime? dueDate;
+    final DateTime? dueDate;
 
-  const CustomCard({
+  const Customhistorycard({
     super.key,
     required this.title,
     required this.subtitle,
@@ -20,7 +20,8 @@ class CustomCard extends StatelessWidget {
     this.onDelete,
   });
 
-  String formatDate(DateTime date) {
+
+    String formatDate(DateTime date) {
     const months = [
       "Januari",
       "Februari",
@@ -74,23 +75,6 @@ class CustomCard extends StatelessWidget {
                 ),
               ),
             ],
-          ],
-        ),
-        trailing: Wrap(
-          spacing: 4,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.check, color: Colors.green),
-              onPressed: onDone,
-            ),
-            IconButton(
-              icon: const Icon(Icons.edit, color: Colors.blue),
-              onPressed: onEdit,
-            ),
-            IconButton(
-              icon: const Icon(Icons.delete, color: Colors.red),
-              onPressed: onDelete,
-            ),
           ],
         ),
       ),
