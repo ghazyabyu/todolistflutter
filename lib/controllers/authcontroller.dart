@@ -4,7 +4,7 @@ class AuthController extends GetxController {
   var isLoggedIn = false.obs;
 
   final String dummyUsername = "admin";
-  final String dummyPassword = "asd";
+  final String dummyPassword = "admin";
 
   bool login(String username, String password) {
     if (username == dummyUsername && password == dummyPassword) {

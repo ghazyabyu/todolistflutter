@@ -4,10 +4,9 @@ class Customhistorycard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String category;
-  final VoidCallback? onDone;
-  final VoidCallback? onEdit;  
   final VoidCallback? onDelete;
-    final DateTime? dueDate;
+  final VoidCallback? onDone;
+  final DateTime? dueDate;
 
   const Customhistorycard({
     super.key,
@@ -15,9 +14,9 @@ class Customhistorycard extends StatelessWidget {
     required this.subtitle,
     required this.category,
     required this.dueDate,
-    this.onDone,
-    this.onEdit,
+
     this.onDelete,
+    this.onDone,
   });
 
 
