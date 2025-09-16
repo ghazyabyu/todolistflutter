@@ -18,17 +18,21 @@ class HomePage extends StatelessWidget {
           return const Center(child: Text("Belum ada kegiatan"));
         }
 
+        final activeTodos = todoController.todos.where((t) => !t.isDone).toList();
+
+
         return ListView.builder(
-          itemCount: todoController.todos.length,
+          itemCount: activeTodos.length,
           itemBuilder: (context, index) {
-            final todo = todoController.todos[index];
+            final todo =activeTodos[index];
             return CustomCard(
               title: todo.title,
               subtitle: todo.description,
               category: todo.category,
               dueDate: todo.dueDate,
               onDone: () {
-                todoController.markAsDone(index);
+                final realIndex = todoController.todos.indexOf(todo);
+                todoController.markAsDone(realIndex);
               },
               onEdit: () {
                 Get.toNamed(

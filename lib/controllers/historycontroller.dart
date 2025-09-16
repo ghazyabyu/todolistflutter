@@ -20,4 +20,9 @@ class HistoryController extends GetxController {
     historyList.value =
         todoController.todos.where((t) => t.isDone).toList();
   }
+
+
+  
+
 }
+

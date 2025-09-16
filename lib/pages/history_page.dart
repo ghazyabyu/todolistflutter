@@ -29,6 +29,9 @@ class HistoryPage extends StatelessWidget {
               subtitle: todo.description,
               category: todo.category,
               dueDate: todo.dueDate,
+              onDelete: (){
+                 todoController.deleteTodo(index);
+              },
               onDone: null,
             );
           },
