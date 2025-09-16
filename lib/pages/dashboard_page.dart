@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todolistflutter/bindings/dashboardbinding.dart';
 import 'package:todolistflutter/controllers/dashboardcontroller.dart';
+import '../components/customcolor.dart';
+
 
 class DashboardPage extends StatelessWidget {
   DashboardPage({super.key});
@@ -23,8 +25,9 @@ class DashboardPage extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: dash.selectedIndex.value,
           onTap: dash.changePage,
-          selectedItemColor: Colors.blue,
+          selectedItemColor:AppColors.darkgreen,
           unselectedItemColor: Colors.grey,
+          backgroundColor: AppColors.lightGreen,
           items: const [
              BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
 

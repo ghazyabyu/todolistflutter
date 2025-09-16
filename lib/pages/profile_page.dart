@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/customcolor.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -8,8 +9,9 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Profile 👤"),
-        backgroundColor: const Color(0xFF660B05),
+        backgroundColor: AppColors.softYellow,
       ),
+      backgroundColor: AppColors.softYellow,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -19,7 +21,7 @@ class ProfilePage extends StatelessWidget {
               const Center(
                 child: CircleAvatar(
                   radius: 40,
-                  backgroundColor: Color(0xFF660B05),
+                  backgroundColor: AppColors.verydarkgreen,
                   child: Icon(Icons.person, size: 50, color: Colors.white),
                 ),
               ),
@@ -34,11 +36,11 @@ class ProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 12),
 
-              _buildProfileItem("Username", "AhmadKece"),
+              _buildProfileItem("Username", "EGGADanis"),
               const SizedBox(height: 12),
-              _buildProfileItem("Email", "ahmadek@email.com"),
+              _buildProfileItem("Email", "EGGADanis@email.com"),
               const SizedBox(height: 12),
-              _buildProfileItem("Phone", "+62 812 3456 7890"),
+              _buildProfileItem("Phone", "+68 888 8888 8888"),
             ],
           ),
         ),
@@ -56,7 +58,7 @@ class ProfilePage extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: Color(0xFF660B05),
+            color:AppColors.darkgreen,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Text(

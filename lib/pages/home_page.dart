@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/todocontroller.dart';
 import '../components/customcard.dart';
+import '../components/customcolor.dart';
 import '../routes/routes.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,7 +13,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Todo List")),
+      appBar: AppBar(title: const Text("Todo List"),
+      backgroundColor:AppColors.softYellow ,),
+      backgroundColor: AppColors.softYellow,
       body: Obx(() {
         if (todoController.todos.isEmpty) {
           return const Center(child: Text("Belum ada kegiatan"));
