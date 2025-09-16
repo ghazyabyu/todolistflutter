@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todolistflutter/components/customcolor.dart';
 
 class Customhistorycard extends StatelessWidget {
   final String title;
@@ -41,6 +42,7 @@ class Customhistorycard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: AppColors.lighterGreen,
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
@@ -70,7 +72,7 @@ class Customhistorycard extends StatelessWidget {
                 "Due Date: ${formatDate(dueDate!)}",
                 style: const TextStyle(
                   fontSize: 12,
-                  color: Colors.redAccent,
+                  color:AppColors.darkgreen,
                 ),
               ),
             ],

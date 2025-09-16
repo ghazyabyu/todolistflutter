@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todolistflutter/components/customcolor.dart';
 import '../controllers/todocontroller.dart';
 import '../components/customtextfield.dart';
 import '../components/custombutton.dart';
@@ -57,7 +58,9 @@ class AddTodoPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(isEdit ? "Edit Todo" : "Tambah Todo"),
+        backgroundColor: AppColors.softYellow,
       ),
+      backgroundColor: AppColors.softYellow,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

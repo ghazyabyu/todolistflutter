@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:todolistflutter/controllers/authcontroller.dart';
 import '../components/customtextfield.dart';
 import '../components/custombutton.dart';
+import '../components/customcolor.dart';
 import 'dashboard_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -16,25 +17,35 @@ class LoginPage extends StatelessWidget {
     final AuthController authC = Get.find<AuthController>();
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColors.softYellow,
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.lock_outline, size: 80, color: Colors.brown.shade600),
+              Icon(Icons.checklist_sharp, size: 80, color:const Color.fromARGB(255, 157, 190, 154)),
               const SizedBox(height: 20),
               const Text(
-                "Welcome Back!",
+                "ULIST",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black87,
+                  color:AppColors.textPrimary,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
+              const Text(
+                "ATUR HIDUP MU MULAI DARI hal kecil",
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color:AppColors.textPrimary,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
 
               CustomTextField(controller: username, hintText: "Username"),
               const SizedBox(height: 16),

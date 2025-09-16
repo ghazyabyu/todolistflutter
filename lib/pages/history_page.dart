@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import '../controllers/todocontroller.dart';
 import '../components/customcard.dart';
 import '../components/customhistorycard.dart';
+import '../components/customcolor.dart';
+
 
 class HistoryPage extends StatelessWidget {
   HistoryPage({super.key});
@@ -12,7 +14,9 @@ class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("History")),
+      appBar: AppBar(title: const Text("History"),
+      backgroundColor: AppColors.softYellow,),
+      backgroundColor:AppColors.softYellow ,
       body: Obx(() {
         final historyList = todoController.todos.where((t) => t.isDone).toList();
 
@@ -22,7 +26,8 @@ class HistoryPage extends StatelessWidget {
 
         return ListView.builder(
           itemCount: historyList.length,
-          itemBuilder: (context, index) {
+          itemBuilder: (context, index) 
+          {
             final todo = historyList[index];
             return Customhistorycard(
               title: todo.title,
