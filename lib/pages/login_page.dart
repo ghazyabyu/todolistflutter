@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todolistflutter/controllers/authcontroller.dart';
+import 'package:todolistflutter/routes/routes.dart';
 import '../components/customtextfield.dart';
 import '../components/custombutton.dart';
 import '../components/customcolor.dart';
@@ -57,7 +58,7 @@ class LoginPage extends StatelessWidget {
                 onPressed: () {
                   bool success = authC.login(username.text, password.text);
                   if (success) {
-                    Get.offAllNamed('/dashboardpage');
+                    Get.offAllNamed(AppRoutes.dashboardpage);//salah
                   } else {
                     Get.snackbar(
                       "Login Failed",

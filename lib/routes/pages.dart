@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:todolistflutter/bindings/authbinding.dart';
 import 'package:todolistflutter/bindings/dashboardbinding.dart';
 import 'package:todolistflutter/bindings/historybinding.dart';
-import 'package:todolistflutter/bindings/homebinding.dart'; 
 import 'package:todolistflutter/pages/dashboard_page.dart';
 import 'package:todolistflutter/pages/history_page.dart';
 import 'package:todolistflutter/pages/home_page.dart';
@@ -33,11 +32,12 @@ class AppPages {
       binding: HistoryBinding(),
     ),
 
-    GetPage(name: AppRoutes.profilepage, page: () => ProfilePage()),
+    GetPage(
+      name: AppRoutes.profilepage,
+      page: () => ProfilePage()),
     GetPage(
       name: AppRoutes.homepage,
       page: () => HomePage(),
-      binding: HomeBinding(),
     ),
 
      GetPage(

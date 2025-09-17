@@ -6,7 +6,7 @@ class CustomCard extends StatelessWidget {
   final String subtitle;
   final String category;
   final VoidCallback? onDone;
-  final VoidCallback? onEdit;  
+  final VoidCallback? onEdit;
   final VoidCallback? onDelete;
   final DateTime? dueDate;
 
@@ -34,7 +34,7 @@ class CustomCard extends StatelessWidget {
       "September",
       "Oktober",
       "November",
-      "Desember"
+      "Desember",
     ];
     return "${date.day} ${months[date.month - 1]} ${date.year}";
   }
@@ -44,9 +44,7 @@ class CustomCard extends StatelessWidget {
     return Card(
       color: AppColors.lighterGreen,
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 3,
       child: ListTile(
         title: Text(
@@ -68,12 +66,22 @@ class CustomCard extends StatelessWidget {
             ),
             if (dueDate != null) ...[
               const SizedBox(height: 4),
-              Text(
-                "Due Date: ${formatDate(dueDate!)}",
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: AppColors.darkgreen,
-                ),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.calendar_today,
+                    size: 16,
+                    color: AppColors.darkgreen,
+                  ),
+                  const SizedBox(width: 3), 
+                  Text(
+                    formatDate(dueDate!),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: AppColors.darkgreen,
+                    ),
+                  ),
+                ],
               ),
             ],
           ],
