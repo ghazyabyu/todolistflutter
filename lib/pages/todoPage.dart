@@ -11,13 +11,11 @@ class AddTodoPage extends StatelessWidget {
   final TodoController todoController = Get.find<TodoController>();
   final titleController = TextEditingController();
   final descController = TextEditingController();
-  final duedatecontroller = TextEditingController();
-  DateTime? selectedDate;
 
+  var selectedDate = Rxn<DateTime>();
   final categories = ["Sekolah", "Pekerjaan", "Pribadi"];
   var selectedCategory = "".obs;
 
-  
   String formatDate(DateTime date) {
     return "${date.day} ${_monthName(date.month)} ${date.year}";
   }
@@ -51,7 +49,6 @@ class AddTodoPage extends StatelessWidget {
       selectedCategory.value = args["category"];
       if (args["duedate"] != null && args["duedate"] is DateTime) {
         selectedDate = args["duedate"];
-        duedatecontroller.text = formatDate(selectedDate!);
       }
     }
 
@@ -64,6 +61,7 @@ class AddTodoPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomTextField(controller: titleController, hintText: "Judul"),
             const SizedBox(height: 12),
@@ -71,48 +69,59 @@ class AddTodoPage extends StatelessWidget {
             const SizedBox(height: 12),
 
             
-            GestureDetector(
+            Text("Due Date", style: TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            Obx(() => GestureDetector(
               onTap: () async {
                 DateTime? picked = await showDatePicker(
-                  context: context,
-                  initialDate: selectedDate ?? DateTime.now(),
-                  firstDate: DateTime(2020),
-                  lastDate: DateTime(2100),
-                );
-                if (picked != null) {
-                  selectedDate = picked;
-                  duedatecontroller.text = formatDate(picked);
-                }
-              },
-              child: AbsorbPointer(
-                child: CustomTextField(
-                  controller: duedatecontroller,
-                  hintText: "Pilih Due Date",
-                ),
-              ),
-            ),
+                context: context,
+                initialDate: selectedDate.value ?? DateTime.now(),
+                firstDate: DateTime(2020),
+                lastDate: DateTime(2100),
+              );
+              if (picked != null) {
+              selectedDate.value = picked; // reactive update
+            }
+          },
+          child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
+          decoration: BoxDecoration(
+          color: AppColors.lightGreen,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: Colors.grey.shade400),
+        ),
+         child: Text(
+           selectedDate.value == null
+            ? "Pilih Due Date"
+          : formatDate(selectedDate.value!),
+            style: TextStyle(
+            color: selectedDate.value == null ? Colors.grey : Colors.black,
+           ),
+          ),
+        ),
+      )),
+
+
             const SizedBox(height: 12),
 
-            
             Obx(
               () => DropdownButton<String>(
-                value:
-                    selectedCategory.value.isEmpty ? null : selectedCategory.value,
+                value: selectedCategory.value.isEmpty
+                    ? null
+                    : selectedCategory.value,
                 hint: const Text("Pilih Kategori"),
                 onChanged: (value) {
                   if (value != null) selectedCategory.value = value;
                 },
                 items: categories
                     .map(
-                      (cat) =>
-                          DropdownMenuItem(value: cat, child: Text(cat)),
+                      (cat) => DropdownMenuItem(value: cat, child: Text(cat)),
                     )
                     .toList(),
               ),
             ),
             const SizedBox(height: 20),
 
-           
             CustomButton(
               text: isEdit ? "Update" : "Simpan",
               onPressed: () {
@@ -124,14 +133,14 @@ class AddTodoPage extends StatelessWidget {
                       titleController.text,
                       descController.text,
                       selectedCategory.value,
-                      selectedDate, 
+                      selectedDate.value,
                     );
                   } else {
                     todoController.addTodo(
                       titleController.text,
                       descController.text,
                       selectedCategory.value,
-                      selectedDate, 
+                      selectedDate.value,
                     );
                   }
                   Get.back();

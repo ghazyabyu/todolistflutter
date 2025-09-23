@@ -68,12 +68,22 @@ class Customhistorycard extends StatelessWidget {
             ),
             if (dueDate != null) ...[
               const SizedBox(height: 4),
-              Text(
-                "Due Date: ${formatDate(dueDate!)}",
-                style: const TextStyle(
-                  fontSize: 12,
-                  color:AppColors.darkgreen,
-                ),
+             Row(
+                children: [
+                  const Icon(
+                    Icons.calendar_today,
+                    size: 16,
+                    color: AppColors.darkgreen,
+                  ),
+                  const SizedBox(width: 3), 
+                  Text(
+                    formatDate(dueDate!),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: AppColors.darkgreen,
+                    ),
+                  ),
+                ],
               ),
             ],
           ],
