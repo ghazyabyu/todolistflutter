@@ -8,13 +8,13 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key}); 
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.dashboardpage, 
+      initialRoute: AppRoutes.loginpage, 
       getPages: AppPages.pages,
     );
   }
