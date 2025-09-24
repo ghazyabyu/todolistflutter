@@ -13,6 +13,7 @@ class AddTodoPage extends StatelessWidget {
   final descController = TextEditingController();
 
   var selectedDate = Rxn<DateTime>();
+
   final categories = ["Sekolah", "Pekerjaan", "Pribadi"];
   var selectedCategory = "".obs;
 
@@ -48,7 +49,7 @@ class AddTodoPage extends StatelessWidget {
       descController.text = args["desc"];
       selectedCategory.value = args["category"];
       if (args["duedate"] != null && args["duedate"] is DateTime) {
-        selectedDate = args["duedate"];
+        selectedDate.value = args["duedate"]; // diperbaiki: pakai .value
       }
     }
 
@@ -71,39 +72,44 @@ class AddTodoPage extends StatelessWidget {
             
             Text("Due Date", style: TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
-            Obx(() => GestureDetector(
-              onTap: () async {
-                DateTime? picked = await showDatePicker(
-                context: context,
-                initialDate: selectedDate.value ?? DateTime.now(),
-                firstDate: DateTime(2020),
-                lastDate: DateTime(2100),
-              );
-              if (picked != null) {
-              selectedDate.value = picked; // reactive update
-            }
-          },
-          child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
-          decoration: BoxDecoration(
-          color: AppColors.lightGreen,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Colors.grey.shade400),
-        ),
-         child: Text(
-           selectedDate.value == null
-            ? "Pilih Due Date"
-          : formatDate(selectedDate.value!),
-            style: TextStyle(
-            color: selectedDate.value == null ? Colors.grey : Colors.black,
-           ),
-          ),
-        ),
-      )),
-
+            Obx(
+              () => GestureDetector(
+                onTap: () async {
+                  DateTime? picked = await showDatePicker(
+                    context: context,
+                    initialDate: selectedDate.value ?? DateTime.now(),
+                    firstDate: DateTime(2020),
+                    lastDate: DateTime(2100),
+                  );
+                  if (picked != null) {
+                    selectedDate.value = picked; 
+                  }
+                },
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
+                  decoration: BoxDecoration(
+                    color: AppColors.lightGreen,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.grey.shade400),
+                  ),
+                  child: Text(
+                    selectedDate.value == null
+                        ? "Pilih Due Date"
+                        : formatDate(selectedDate.value!),
+                    style: TextStyle(
+                      color: selectedDate.value == null
+                          ? Colors.grey
+                          : Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+            ),
 
             const SizedBox(height: 12),
 
+            // Dropdown kategori
             Obx(
               () => DropdownButton<String>(
                 value: selectedCategory.value.isEmpty
@@ -122,6 +128,7 @@ class AddTodoPage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
+            // Tombol Simpan / Update
             CustomButton(
               text: isEdit ? "Update" : "Simpan",
               onPressed: () {
