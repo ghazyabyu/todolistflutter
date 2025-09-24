@@ -27,14 +27,14 @@ class TodoController extends GetxController {
     String newDesc,
     String newCategory,
     DateTime? newdueDate,
-
-  ) {
+) {
     todos[index].title = newTitle;
     todos[index].description = newDesc;
     todos[index].category = newCategory;
     todos[index].dueDate = newdueDate;
     todos.refresh();
-  }
+}
+
 
   void deleteTodo(int index) {
     todos.removeAt(index);
