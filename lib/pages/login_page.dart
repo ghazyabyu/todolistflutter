@@ -10,8 +10,7 @@ import 'dashboard_page.dart';
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
-  final TextEditingController username = TextEditingController();
-  final TextEditingController password = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,26 +47,15 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              CustomTextField(controller: username, hintText: "Username"),
+              CustomTextField(controller: authC.usernameController, hintText: "Username"),
               const SizedBox(height: 16),
-              CustomTextField(controller: password, hintText: "Password", obscureText: true),
+              CustomTextField(controller: authC.passwordController, hintText: "Password", obscureText: true),
 
               const SizedBox(height: 24),
               CustomButton(
-                text: "Login",
-                onPressed: () {
-                  bool success = authC.login(username.text, password.text);
-                  if (success) {
-                    Get.offAllNamed(AppRoutes.dashboardpage);//salah
-                  } else {
-                    Get.snackbar(
-                      "Login Failed",
-                      "Username atau password salah",
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.redAccent,
-                      colorText: Colors.white,
-                    );
-                  }
+              text: "Login",
+            onPressed: () async {
+              await authC.login();
                 },
               ),
             ],
