@@ -34,9 +34,12 @@ class AppPages {
       binding: HistoryBinding(),
     ),
 
-    GetPage(
-      name: AppRoutes.profilepage,
-      page: () => ProfilePage()),
+   GetPage(
+     name: AppRoutes.profilepage,
+     page: () => ProfilePage(),
+     binding: AuthBinding(),
+   ),
+
     GetPage(
       name: AppRoutes.homepage,
       page: () => HomePage(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todolistflutter/bindings/authbinding.dart';
 import 'package:todolistflutter/routes/pages.dart';
 import 'package:todolistflutter/routes/routes.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.splashpage, 
       getPages: AppPages.pages,
+      initialBinding: AuthBinding(),
     );
   }
 }
