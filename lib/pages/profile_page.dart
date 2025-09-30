@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
+import 'package:todolistflutter/components/custombutton.dart';
+import 'package:todolistflutter/controllers/authcontroller.dart';
+import 'package:todolistflutter/routes/routes.dart';
 import '../components/customcolor.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  ProfilePage({super.key});
+  final AuthController authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +47,20 @@ class ProfilePage extends StatelessWidget {
               _buildProfileItem("Email", "EGGADanis@email.com"),
               const SizedBox(height: 12),
               _buildProfileItem("Phone", "+68 888 8888 8888"),
+
+              const SizedBox(height: 20),
+              Center(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: CustomButton(
+                    text: "Logout",
+                    onPressed: () {
+                      authController.logout();
+                      Get.offAllNamed(AppRoutes.loginpage);
+                    },
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -58,7 +78,7 @@ class ProfilePage extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color:AppColors.darkgreen,
+            color: AppColors.darkgreen,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Text(
