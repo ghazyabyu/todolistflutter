@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todolistflutter/bindings/dashboardbinding.dart';
 import 'package:todolistflutter/controllers/dashboardcontroller.dart';
+import 'package:todolistflutter/controllers/historycontroller.dart';
 import '../components/customcolor.dart';
 
 
@@ -9,6 +10,8 @@ class DashboardPage extends StatelessWidget {
   DashboardPage({super.key});
 
   final DashboardController dash =  Get.find<DashboardController>();
+  final historyController = Get.put(HistoryController());
+
 
   @override
   Widget build(BuildContext context) {

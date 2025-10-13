@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../model/todo.dart';
 import '../db_helper.dart';
@@ -48,5 +49,11 @@ class TodoController extends GetxController {
     final todo = todos[index];
     await db.delete('todos', todo.id!);
     await loadTodos();
+  }
+
+  var isMobile = true.obs;
+
+  void updateLayout(BoxConstraints constraints) {
+    isMobile.value = constraints.maxWidth < 600;
   }
 }

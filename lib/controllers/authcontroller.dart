@@ -29,4 +29,10 @@ class AuthController extends GetxController {
         Get.snackbar("Logout", "You have been logged out");
 
   }
+
+   var isMobile = true.obs;
+
+  void updateLayout(BoxConstraints constraints) {
+    isMobile.value = constraints.maxWidth < 600;
+  }
 }

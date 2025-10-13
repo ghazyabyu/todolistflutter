@@ -1,47 +1,25 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../controllers/todocontroller.dart';
-import '../components/customcard.dart';
-import '../components/customhistorycard.dart';
-import '../components/customcolor.dart';
+  import 'package:flutter/material.dart';
+  import 'package:get/get.dart';
+  import 'package:todolistflutter/controllers/historycontroller.dart';
+  import 'package:todolistflutter/pages/history/history_mobile.dart';
+  import 'package:todolistflutter/pages/history/history_widescreen.dart';
+
+  class HistoryPage extends StatelessWidget {
+    HistoryPage({super.key});
 
 
-class HistoryPage extends StatelessWidget {
-  HistoryPage({super.key});
+    @override
+    Widget build(BuildContext context) {
 
-  final TodoController todoController = Get.find<TodoController>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("History"),
-      backgroundColor: AppColors.softYellow,),
-      backgroundColor:AppColors.softYellow ,
-      body: Obx(() {
-        final historyList = todoController.todos.where((t) => t.isDone).toList();
-
-        if (historyList.isEmpty) {
-          return const Center(child: Text("Belum ada kegiatan selesai"));
-        }
-
-        return ListView.builder(
-          itemCount: historyList.length,
-          itemBuilder: (context, index) 
-          {
-            final todo = historyList[index];
-            return Customhistorycard(
-              title: todo.title,
-              subtitle: todo.description,
-              category: todo.category,
-              dueDate: todo.dueDate,
-              onDelete: (){
-                 todoController.deleteTodo(index);
-              },
-              onDone: null,
-            );
+      final controller = Get.find<HistoryController>();
+      
+      return Scaffold(
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            controller.updateLayout(constraints);
+          return Obx(()=> controller.isMobile.value ? HistoryMobile() : HistoryWidescreen());
           },
-        );
-      }),
-    );
+        ),
+      );
+    }
   }
-}
