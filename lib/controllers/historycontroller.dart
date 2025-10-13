@@ -1,8 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/todocontroller.dart';
 import '../model/todo.dart';
 
 class HistoryController extends GetxController {
+
+
+  
   final TodoController todoController = Get.find<TodoController>();
 
   RxList<Todo> historyList = <Todo>[].obs;
@@ -23,6 +27,11 @@ class HistoryController extends GetxController {
 
 
   
+var isMobile = true.obs;
 
+  void updateLayout(BoxConstraints constraints) {
+    isMobile.value = constraints.maxWidth < 600;
+  }
+  
 }
 

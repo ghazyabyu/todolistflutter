@@ -3,6 +3,7 @@ import 'package:todolistflutter/bindings/authbinding.dart';
 import 'package:todolistflutter/bindings/dashboardbinding.dart';
 import 'package:todolistflutter/bindings/historybinding.dart';
 import 'package:todolistflutter/bindings/splashbinding.dart';
+import 'package:todolistflutter/bindings/profilebinding.dart';
 import 'package:todolistflutter/pages/dashboard_page.dart';
 import 'package:todolistflutter/pages/history_page.dart';
 import 'package:todolistflutter/pages/home_page.dart';
@@ -47,7 +48,7 @@ class AppPages {
 
      GetPage(
       name: AppRoutes.addtodo,
-      page: () => AddTodoPage(),
+      page: () => Todopage(),
     ),
      GetPage(
       name: AppRoutes.splashpage,
