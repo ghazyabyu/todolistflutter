@@ -16,48 +16,73 @@ class ProfileWidescreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Profile 👤"),
         backgroundColor: AppColors.softYellow,
-      ), 
+        centerTitle: true,
+      ),
       backgroundColor: AppColors.softYellow,
       body: SafeArea(
-  child: SingleChildScrollView(  // <--- Tambahkan ini
-    padding: const EdgeInsets.all(16.0),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Center(
-          child: CircleAvatar(
-            radius: 40,
-            backgroundColor: AppColors.verydarkgreen,
-            child: Icon(Icons.person, size: 50, color: Colors.white),
-          ),
-        ),
-        const SizedBox(height: 20),
-        const Text(
-          "User Information",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 12),
-        _buildProfileItem("Username", "EGGADanis"),
-        const SizedBox(height: 12),
-        _buildProfileItem("Email", "EGGADanis@email.com"),
-        const SizedBox(height: 12),
-        _buildProfileItem("Phone", "+68 888 8888 8888"),
-        const SizedBox(height: 20),
-        CustomButton(
-          text: "Logout",
-          onPressed: () {
-            authController.logout();
-            Get.offAllNamed(AppRoutes.loginpage);
-          },
-        ),
-      ],
-    ),
-  ),
-),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 900),
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 32),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Avatar di kiri
+                      const CircleAvatar(
+                        radius: 70,
+                        backgroundColor: AppColors.verydarkgreen,
+                        child: Icon(Icons.person, size: 80, color: Colors.white),
+                      ),
+                      const SizedBox(width: 50),
 
+                     
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "User Information",
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            _buildProfileItem("Username", "EGGADanis"),
+                            const SizedBox(height: 16),
+                            _buildProfileItem("Email", "EGGADanis@email.com"),
+                            const SizedBox(height: 16),
+                            _buildProfileItem("Phone", "+68 888 8888 8888"),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 50),
+
+                  
+                  SizedBox(
+                    width: 250,
+                    child: CustomButton(
+                      text: "Logout",
+                      onPressed: () {
+                        authController.logout();
+                        Get.offAllNamed(AppRoutes.loginpage);
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -65,18 +90,34 @@ class ProfileWidescreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 4),
+        Text(
+          label,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+        ),
+        const SizedBox(height: 6),
         Container(
           width: double.infinity,
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
             color: AppColors.darkgreen,
             borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 5,
+                offset: const Offset(0, 3),
+              ),
+            ],
           ),
           child: Text(
             value,
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 15,
+            ),
           ),
         ),
       ],
