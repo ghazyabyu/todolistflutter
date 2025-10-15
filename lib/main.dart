@@ -3,9 +3,12 @@ import 'package:get/get.dart';
 import 'package:todolistflutter/bindings/authbinding.dart';
 import 'package:todolistflutter/routes/pages.dart';
 import 'package:todolistflutter/routes/routes.dart';
+import 'package:todolistflutter/controllers/authcontroller.dart';
 
 void main() {
-  runApp(const MyApp());
+
+  Get.put(AuthController(), permanent: true);
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
